@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">               
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+        <nav style="background-color: #FFFEFE">
+            <div class="nav-wrapper" style="margin: 0 40px;">
+                <img style="height: 53px; margin: 0 10px" src="images/1.jpg">
+                <a href="#" class="hide-on-med-and-down" style="color: #000; font-size: 2em">
+                    <b>ARKADEMY BOOTCAMP</b>
+                </a>
+            </div>
+        </nav>
+
+        <a class="waves-effect waves-light orange accent-2 btn right" style="margin-right: 130px; width: 100px; margin-bottom: 20px; margin-top: 20px;" href="#modal1">ADD</a>
+        <table style="border: solid 1px; width: 80%; margin: auto; " class="centered">
+                <thead>
+                  <tr>
+                      <th>Nama</th>
+                      <th>Work</th>
+                      <th>Salary</th>                      
+                      <th>Action</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr>
+                    <td>Jonathan</td>
+                    <td>Lollipop</td>
+                    <td>$7.00</td>
+                    <td>
+                        <button class="waves-effect waves-light btn-flat" ><img src="images/2.png" height="35" width="35"></button>
+                        <button class="waves-effect waves-light btn-flat"><img src="images/3.png" height="35" width="35"></button>    
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+   
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
+    </script>
+</body>
+</html>

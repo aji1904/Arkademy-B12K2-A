@@ -10,7 +10,7 @@ app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'Client/public/index.html'))
+	res.sendFile(path.resolve(__dirname, 'view/index.html'))
 })
 
 mongoose.connect('mongodb+srv://aji1998:aji12345@cluster0-bwklw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
