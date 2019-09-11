@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose')
 
 const kategoriSchema = new Schema({
-	salary : String,
+	salary : Number,
 },{ versionKey: false })
 
 module.exports = model('kategori', kategoriSchema)
