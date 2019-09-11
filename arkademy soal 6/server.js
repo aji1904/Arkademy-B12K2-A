@@ -15,13 +15,8 @@ var app = express();
 app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/view/index.html')
-})
-
-
-app.use('/images',
-	express.static(__dirname + '/view/images/')
+app.use('/',
+	express.static(__dirname + '/view')
 )
 
 app.get('/api/kategori', async (req, res) => {
@@ -42,15 +37,32 @@ app.post('/api/nama', async (req, res) => {
 	})
 	await newNama.save()
 	res.send('berhasil tersimpan')
-	console.log('berhasil')
+})
+
+app.delete('/api/nama/:id', async (req, res) => {
+	const data = await nama.findByIdAndRemove(req.params.id)
+	res.send({
+		message: `Berhasil menghapus data ${data.name}`
+	})
+})
+
+app.put('/api/nama/:id', async (req, res) => {
+	const data = await nama.findById(req.params.id)
+	data.name = req.body.nama
+	data.work = req.body.work
+	data.salary = req.body.salary
+	await data.save();
+	res.send({
+		message: `Berhasil mengedit data ${data.name}`
+	})
 })
 
 app.get('/api/nama', async (req, res) => {
-	const data = await nama.find().populate('kategori').populate('work').exec()
+	const data = await nama.find()
 	res.send({ data })
 })
 
-
+mongoose.set('useUnifiedTopology', true)
 mongoose.connect('mongodb+srv://aji1998:aji12345@cluster0-bwklw.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
 	.then(() => {
 		// const data = kategori.create([

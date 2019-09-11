@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +10,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-  crossorigin="anonymous"></script>
-
-
 </head>
+
 <body>
-  
+
   <nav>
     <div class="nav-wrapper white">
       <ul id="nav-mobile" class=" left hide-on-med-and-down">
@@ -27,111 +22,99 @@
       </ul>
     </div>
   </nav>
-  
+
   <div style="margin: 10px 0; padding: 15px 50px;">
     <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn right modal-trigger" style="margin-bottom: 20px;" href="#add"><i class="material-icons left">add</i>ADD</a>
-    
+    <a class="waves-effect waves-light btn right modal-trigger" style="margin-bottom: 20px;" href="#add"><i
+        class="material-icons left">add</i>ADD</a>
+
+  <!-- Modal edit -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>EDIT DATA</h4>
+      <form>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="edit-name" type="text">
+            <label for="edit-name">Nama Anda</label>
+          </div>
+          <div class="input-field col s12">
+            <select id="edit-work-select" class="browser-default">
+              <option disabled selected>Choose your option</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <select id="edit-salary-select" class="browser-default">
+              <option disabled selected>Choose your option</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="waves-effect waves-light btn modal-close">Cancel</a>
+      <a href="#!" class="waves-effect waves-light btn" id="simpan-edit">Edit</a>
+    </div>
+  </div>
+
     <div>
-    <table class="centered" style="border: 1px solid; border-radius: 10px;">
-      <thead>
-        <tr>
+      <table class="centered" style="border: 1px solid; border-radius: 10px;">
+        <thead>
+          <tr>
             <th>Name</th>
             <th>Work</th>
             <th>Salary</th>
             <th>Action</th>
-        </tr>
-      </thead>
-  
-      <tbody>
-        <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-          <td>
-            <!-- modal trigger1 -->
-            <a class="modal-trigger" href="#"><img src="images/2.png" alt="logo" style="height: 30px; margin: 0 10px"></a>
-            <!-- modal trigger2 -->
-            <a class="modal-trigger" href="#"><img src="images/3.png" alt="logo" style="height: 30px; margin: 0 10px"></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </tr>
+        </thead>
+
+        <tbody id="table-body">
+        </tbody>
+      </table>
     </div>
   </div>
 
 
-   <!-- Modal Add -->
-   <div id="add" class="modal">
-     <div class="modal-content">
-       <h4>ADD DATA</h4>
-       <form>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="name" type="text">
-              <label for="name">Nama Anda</label>
-            </div>
-            <div class="input-field col s12">
-              <select id="work-select" class="browser-default">
-                <option disabled selected>Choose your option</option>
-              </select>
-            </div>
-            <div class="input-field col s12">
-              <select id="salary-select" class="browser-default">
-                <option disabled selected>Choose your option</option>
-              </select>
-            </div>
-        </form>
-     </div>
-     <div class="modal-footer">
-       <a href="#!" class="waves-effect waves-light btn modal-close">Cancel</a>
-       <a href="#!" class="waves-effect waves-light btn" id="simpan">Add</a>
-     </div>
-   </div>
+  <!-- Modal Add -->
+  
+  <!-- Modal  -->
+  <div id="add" class="modal">
+    <div class="modal-content">
+      <h4>ADD DATA</h4>
+      <form>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="name" type="text">
+            <label for="name">Nama Anda</label>
+          </div>
+          <div class="input-field col s12">
+            <select id="work-select" class="browser-default">
+              <option disabled selected>Choose your option</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <select id="salary-select" class="browser-default">
+              <option disabled selected>Choose your option</option>
+            </select>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="waves-effect waves-light btn modal-close">Cancel</a>
+      <a href="#!" class="waves-effect waves-light btn" id="simpan">Add</a>
+    </div>
+  </div>
+  
+
+  
 
 
-   
-   
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-   <script>
-      $(document).ready(function(){
-        $('.modal').modal();
-        $('select').formSelect();
-        fetch('/api/work')
-          .then(data => data.json())
-          .then(res => {
-            res.data.forEach(dt => {
-              $('#work-select').append('<option value="' + dt.name + '">' + dt.name + '</option>');
-            });
-          })
-        fetch('/api/kategori')
-          .then(data => data.json())
-          .then(res => {
-            res.data.forEach(dt => {
-              $('#salary-select').append('<option value="' + dt.salary + '">' + dt.salary + '</option>');
-            });
-          })
-
-        $('#simpan').on('click', function(){
-          const nama = $('#name').val()
-          const work = $('#work-select').val()
-          const salary = $('#salary-select').val()
-
-          fetch('/api/nama', {
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({
-              nama: nama,
-              work: work,
-              salary: salary
-            })
-          })
-          .then(res => console.log(res))
-        })
-      });
-   </script>
-
+  <script src="/index.js"></script>
 </body>
+
 </html>
